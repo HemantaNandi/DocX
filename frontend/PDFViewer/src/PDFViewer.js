@@ -45,17 +45,23 @@ const PDFViewer = ({ file }) => {
   return (
     <View style={styles.container}>
       <View style={styles.controls}>
-        <Button title="Prev" onPress={goToPrevPage} disabled={pageNumber === 1} />
-        <Text>
-          Page {pageNumber} of {numPages}
-        </Text>
-        <Button
-          title="Next"
-          onPress={goToNextPage}
-          disabled={pageNumber === numPages}
-        />
-        <Button title="Zoom In" onPress={zoomIn} />
-        <Button title="Zoom Out" onPress={zoomOut} />
+        <View style={styles.controlGroup}>
+          <Button title="Prev" onPress={goToPrevPage} disabled={pageNumber === 1} />
+          <Text style={{ marginHorizontal: 15 }}>
+            Page {pageNumber} of {numPages}
+          </Text>
+          <Button
+            title="Next"
+            onPress={goToNextPage}
+            disabled={pageNumber === numPages}
+          />
+          <View style={{ marginLeft: 20 }}>
+            <Button title="Zoom In" onPress={zoomIn} />
+          </View>
+          <View style={{ marginLeft: 10 }}>
+            <Button title="Zoom Out" onPress={zoomOut} />
+          </View>
+        </View>
       </View>
       <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
         <View style={styles.pdfContainer}>
@@ -92,10 +98,15 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   controls: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
     width: '100%',
     marginBottom: 10,
+    alignItems: 'center', // Center the inner group
+  },
+  controlGroup: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    maxWidth: 600, // Max width for the controls
   },
   pdf: {
     flex: 1,
