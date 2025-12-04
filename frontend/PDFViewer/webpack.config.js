@@ -68,7 +68,7 @@ module.exports = {
     main: path.join(__dirname, 'index.web.js'),
   },
   output: {
-    path: path.resolve(appDirectory, 'dist'),
+    path: path.resolve(appDirectory, 'build'),
     publicPath: '/',
     filename: '[name].bundle.js',
   },
@@ -97,7 +97,8 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'node_modules/pdfjs-dist/build/pdf.worker.js', to: '.' }
+        { from: 'node_modules/pdfjs-dist/build/pdf.worker.js', to: '.' },
+        { from: 'public', to: '.' }
       ]
     })
   ],
